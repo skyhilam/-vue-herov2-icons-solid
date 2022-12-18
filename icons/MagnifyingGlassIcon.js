@@ -1,0 +1,29 @@
+export default {
+  name: 'MagnifyingGlassIcon',
+  
+  props: {
+    size: {
+      type: String,
+      default: '24',
+      validator: (s) => (!isNaN(s) || s.length >= 2 && !isNaN(s.slice(0, s.length -1)) && s.slice(-1) === 'x' )
+    }
+  },
+
+  functional: true,
+
+  render(h, ctx) {
+    const size = ctx.props.size.slice(-1) === 'x' 
+      ? ctx.props.size.slice(0, ctx.props.size.length -1) + 'em'
+      : parseInt(ctx.props.size) + 'px';
+
+    const attrs = ctx.data.attrs || {}
+    attrs.width = attrs.width || size
+    attrs.height = attrs.height || size
+    ctx.data.attrs = attrs
+  
+    return <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...ctx.data}>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 3.75C6.77208 3.75 3.75 6.77208 3.75 10.5C3.75 14.2279 6.77208 17.25 10.5 17.25C12.3642 17.25 14.0506 16.4953 15.273 15.273C16.4953 14.0506 17.25 12.3642 17.25 10.5C17.25 6.77208 14.2279 3.75 10.5 3.75ZM2.25 10.5C2.25 5.94365 5.94365 2.25 10.5 2.25C15.0563 2.25 18.75 5.94365 18.75 10.5C18.75 12.5078 18.032 14.3491 16.8399 15.7793L21.5303 20.4697C21.8232 20.7626 21.8232 21.2374 21.5303 21.5303C21.2374 21.8232 20.7626 21.8232 20.4697 21.5303L15.7793 16.8399C14.3491 18.032 12.5078 18.75 10.5 18.75C5.94365 18.75 2.25 15.0563 2.25 10.5Z" fill="#0F172A"/>
+</svg>
+
+  }
+}
